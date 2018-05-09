@@ -6,13 +6,13 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/09 17:50:15 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/09 17:58:03 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_list		*ft_stock_lines(int fd)
+t_list			*ft_stock_lines(int fd)
 {
 	t_list		*list_lines;
 	char		*tmp;
@@ -29,11 +29,11 @@ t_list		*ft_stock_lines(int fd)
 	return (list_lines);
 }
 
-int			ft_max_size(t_list *list)
+int				ft_max_size(t_list *list)
 {
-	int		max;
-	int		cpt;
-	int		i;
+	int			max;
+	int			cpt;
+	int			i;
 
 	max = 0;
 	while (list)
@@ -52,12 +52,12 @@ int			ft_max_size(t_list *list)
 	return (max);
 }
 
-int		**ft_stock_values(t_list *list)
+int				**ft_stock_values(t_list *list)
 {
-	int		**values;
-	int		i;
-	int		k;
-	int		j;
+	int			**values;
+	int			i;
+	int			k;
+	int			j;
 
 	i = ft_lst_size(list);
 	if (!(values = (int **)malloc(sizeof(int *) * ft_lst_size(list))))
