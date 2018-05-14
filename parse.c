@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/09 17:58:03 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:26:04 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,33 @@ int				ft_max_size(t_list *list)
 	return (max);
 }
 
-int				**ft_stock_values(t_list *list)
+t_map				*ft_stock_values(t_list *list)
 {
-	int			**values;
+	t_map		*map;
 	int			i;
 	int			k;
 	int			j;
 
 	i = ft_lst_size(list);
-	if (!(values = (int **)malloc(sizeof(int *) * ft_lst_size(list))))
+	map->height = i;
+	if (!(map->z = (int **)malloc(sizeof(int *) * ft_lst_size(list))))
 		return (NULL);
 	while (list)
 	{
 		j = -1;
 		k = -1;
-		if (!(values[--i] = (int *)malloc(sizeof(int) * ft_max_size(list))))
+		map->width = ft_max_size(list);
+		if (!(map->z[--i] = (int *)malloc(sizeof(int) * map->width)))
 			return (NULL);
-		while (((char *)list->content)[++j] && k <= ft_max_size(list))
+		while (((char *)list->content)[++j] && k <= map->width)
 			if (ft_isdigit(((char *)list->content)[j]))
 			{
-				values[i][++k] = ft_atoi(&((char *)list->content)[j]);
+				map->z[i][++k] = ft_atoi(&((char *)list->content)[j]);
 				while (((char*)list->content)[j + 1] != ' ')
 					j++;
 			}
 		list = list->next;
 	}
-	return (values);
+	map->nb_points = map->height * map->width;
+	return (map);
 }
