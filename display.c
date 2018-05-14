@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/14 18:39:48 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/14 19:13:43 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ t_pixels	ft_create_pixel_map(t_map *map)
 	i = -1;
 	pixels.gap = (map->win_height) / (map->height * 1.4);
 	pixels.coord = malloc(sizeof(t_coord) * map->nb_points);
-	printf("avant seg\n");
 	while (++i < map->nb_points)
 	{
-		pixels.coord[i].x = round((double)(350 + (((i % map->width) * 1 / sqrt(3) - (line * (1 / 2))) * pixels.gap)));
-		pixels.coord[i].y = round(250 + (((i % map->width) - line ) * pixels.gap) / 2);
+		pixels.coord[i].x = 340 + (((1 / sqrt(3))) * ((i % map->width) - line) * pixels.gap) ;
+		pixels.coord[i].y = 10 + ((0.5) * (line + (i % map->width))) * pixels.gap;
 		if (!((i + 1) % map->width))
 			line++;
-		printf("point %d x = %d y = %d\n", i, pixels.coord[i].x, pixels.coord[i].y);
 	}
 	return (pixels);
 }
