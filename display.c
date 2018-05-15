@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/15 16:27:09 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/15 18:45:48 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_prepare_mlx(t_map *map)
 	pixels = ft_create_pixel_map(map);
 	ft_build_image(mlx, map, pixels);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
+	mlx_key_hook(mlx.img.img_ptr, key_events, (void*)0);
 	mlx_loop(mlx.mlx_ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/15 16:11:03 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/15 17:21:40 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft/includes/libft.h"
 # include <mlx.h>
 # include <math.h>
+# include <unistd.h>
 
 typedef struct			s_image
 {
@@ -67,5 +68,6 @@ void					ft_build_image(t_minilibx mlx, t_map *map, t_pixels pixels);
 t_pixels				ft_create_pixel_map(t_map *map);
 void					ft_trace_lines(t_minilibx mlx, t_pixels pixels, t_map *map);
 void					ft_bresenham(t_coord p1, t_coord p2, t_minilibx mlx);
+int						key_events(int key, void *param);
 
 #endif
