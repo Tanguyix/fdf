@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/15 09:49:03 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/15 16:26:05 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ t_map				*ft_stock_values(t_list *list)
 	int			k;
 	int			j;
 
+
 	i = ft_lst_size(list);
+	if (!(map = (t_map *)malloc(sizeof(*map))))
+		return (NULL);
 	map->height = i;
 	if (!(map->z = (int **)malloc(sizeof(int *) * ft_lst_size(list))))
 		return (NULL);

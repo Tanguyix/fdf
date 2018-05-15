@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/15 12:02:11 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/15 16:27:09 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_prepare_mlx(t_map *map)
 	t_minilibx	mlx;
 	t_pixels	pixels;
 	
-	map->win_height = 400 + 50 * (map->height / 2);
-	map->win_width = 400 + 50 * (map->width / 2);
+	map->win_height = ((400 + map->height * 20) <= 1300) ? (400 + map->height * 20): 1300; 
+	map->win_width = ((400 + map->width * 20) <= 2600) ? (400 + map->width * 20) : 2600;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, map->win_width, map->win_height, "test");
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, map->win_width, map->win_height);
@@ -39,14 +39,14 @@ t_pixels	ft_create_pixel_map(t_map *map)
 	line = 0;
 	i = -1;
 	if (map->win_height > map->win_width)
-		pixels.gap = (map->win_height) / (map->height * 1.7);
+		pixels.gap = (map->win_height) / (map->height * 1.8);
 	else
-		pixels.gap = (map->win_width) / (map->width * 1.7);
+		pixels.gap = (map->win_width) / (map->width * 1.8);
 	pixels.coord = malloc(sizeof(t_coord) * map->nb_points);
 	while (++i < map->nb_points)
 	{
-		pixels.coord[i].x = 300 + round(((2 / sqrt(3))) * ((i % map->width) - line) * pixels.gap) ;
-		pixels.coord[i].y = 125 + round(((0.5) * (line + (i % map->width))) * pixels.gap) - map->z[line][i % map->width];
+		pixels.coord[i].x = (map->win_width / 2) - round(pixels.gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * pixels.gap;
+		pixels.coord[i].y = (map->win_height / 2) - round(pixels.gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * pixels.gap) - 10 * map->z[line][i % map->width];
 		if (!((i + 1) % map->width))
 			line++;
 	}
@@ -55,23 +55,12 @@ t_pixels	ft_create_pixel_map(t_map *map)
 
 void	ft_build_image(t_minilibx mlx, t_map *map, t_pixels pixels)
 {
-	int		height;
-	int		width;
 	int		i;
 
-	i = 0;
-	height = -1;
-	while (++height <= map->win_height)
+	i = -1;
+	while (++i < map->nb_points)
 	{
-		width = -1;
-		while (++width <= map->win_width)
-			{
-				if (height == pixels.coord[i].y && width == pixels.coord[i].x)
-				{
-					mlx.img.data[height * map->win_width + width] = 0xFFFFFF;
-					i++;
-					height = -1;
-				}
-			}
+		if (pixels.coord[i].x >= 0 && pixels.coord[i].x < map->win_width && pixels.coord[i].y >= 0 && pixels.coord[i].y < map->win_height)
+			mlx.img.data[pixels.coord[i].x + pixels.coord[i].y * map->win_width] = 0xFFFFFF;
 	}
 }

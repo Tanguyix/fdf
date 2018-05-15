@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/14 18:15:14 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/15 16:11:03 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ int						ft_max_size(t_list *list);
 t_map					*ft_stock_values(t_list *list);
 void					ft_build_image(t_minilibx mlx, t_map *map, t_pixels pixels);
 t_pixels				ft_create_pixel_map(t_map *map);
+void					ft_trace_lines(t_minilibx mlx, t_pixels pixels, t_map *map);
+void					ft_bresenham(t_coord p1, t_coord p2, t_minilibx mlx);
 
 #endif
