@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 11:40:26 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 15:40:03 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_pixels	ft_create_pixel_map(t_map *map)
 		pixels.gap = (map->win_height) / (map->height * 1.8);
 	else
 		pixels.gap = (map->win_width) / (map->width * 1.8);
-	coef_alt = pixels.gap / 20;
+	coef_alt = pixels.gap / 4;
 	pixels.coord = malloc(sizeof(t_coord) * map->nb_points);
 	while (++i < map->nb_points)
 	{

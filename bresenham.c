@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 15:15:13 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 12:47:33 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 15:18:43 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    ft_bresenham_low(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
     int     D;
 
     d.x = p2.x - p1.x;
-    d.y = p2.y -p1.y;
+    d.y = p2.y - p1.y;
     yi = 1;
     if (d.y < 0)
     { 
@@ -57,7 +57,7 @@ void    ft_bresenham_high(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
     int     D;
 
     d.x = p2.x - p1.x;
-    d.y = p2.y -p1.y;
+    d.y = p2.y - p1.y;
     xi = 1;
     if (d.x < 0)
     { 
@@ -82,7 +82,7 @@ void    ft_bresenham_high(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
 
 void    ft_bresenham(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
 {
-    if (abs(p2.y - p1.y) < abs(p2.x - p2.y))
+    if (abs(p2.y - p1.y) < abs(p2.x - p1.x))
     {
         if (p1.x > p2.x)
             ft_bresenham_low(p2, p1, mlx, map);
@@ -104,9 +104,11 @@ void    ft_trace_lines(t_minilibx mlx, t_pixels pixels, t_map *map)
     
     i = -1;
     while (++i < map->nb_points)
-        ft_bresenham(pixels.coord[i], pixels.coord[i + 1], mlx, map);
+    {
+        if (!i || ((i + 1) % map->width))
+            ft_bresenham(pixels.coord[i], pixels.coord[i + 1], mlx, map);
+    }
     i = -1;
     while (++i < map->nb_points - map->width)
         ft_bresenham(pixels.coord[i], pixels.coord[i + map->width], mlx, map);
-
 }
