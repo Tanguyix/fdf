@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 16:32:45 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 16:36:43 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				ft_max_size(t_list *list)
 		{
 			if (ft_isspace(((char *)list->content)[i]))
 				cpt++;
-			while (ft_isspace(((char *)list->content)[i]))
+			while (((char *)list->content)[i + 1] && ft_isspace(((char *)list->content)[i]))
 				i++;
 		}
 		if (cpt > max)
