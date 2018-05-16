@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 16:02:37 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 16:32:45 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_map				*ft_stock_values(t_list *list)
 			if (ft_isdigit(((char *)list->content)[j]))
 			{
 				map->z[i][++k] = ft_atoi(&((char *)list->content)[j]);
-				while (((char*)list->content)[j + 1] != ' ')
+				while (((char*)list->content)[j + 1] && ((char*)list->content)[j + 1] != ' ')
 					j++;
 			}
 		list = list->next;
