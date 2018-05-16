@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 11:12:12 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 11:40:26 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_prepare_mlx(t_map *map)
 	
 	pixels = ft_create_pixel_map(map);
 	ft_build_image(mlx, map, pixels);
+	ft_trace_lines(mlx, pixels, map);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
 	mlx_key_hook(mlx.win, key_events, 0);
 	mlx_hook(mlx.win, 17, 0, &ft_exit, 0);
