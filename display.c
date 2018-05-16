@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/15 18:45:48 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 11:12:12 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_prepare_mlx(t_map *map)
 	pixels = ft_create_pixel_map(map);
 	ft_build_image(mlx, map, pixels);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
-	mlx_key_hook(mlx.img.img_ptr, key_events, (void*)0);
+	mlx_key_hook(mlx.win, key_events, 0);
+	mlx_hook(mlx.win, 17, 0, &ft_exit, 0);
 	mlx_loop(mlx.mlx_ptr);
 }
 
@@ -36,6 +37,7 @@ t_pixels	ft_create_pixel_map(t_map *map)
 	t_pixels	pixels;
 	int			i;
 	int			line;
+	float		coef_alt;
 
 	line = 0;
 	i = -1;
@@ -43,11 +45,12 @@ t_pixels	ft_create_pixel_map(t_map *map)
 		pixels.gap = (map->win_height) / (map->height * 1.8);
 	else
 		pixels.gap = (map->win_width) / (map->width * 1.8);
+	coef_alt = pixels.gap / 20;
 	pixels.coord = malloc(sizeof(t_coord) * map->nb_points);
 	while (++i < map->nb_points)
 	{
 		pixels.coord[i].x = (map->win_width / 2) - round(pixels.gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * pixels.gap;
-		pixels.coord[i].y = (map->win_height / 2) - round(pixels.gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * pixels.gap) - 10 * map->z[line][i % map->width];
+		pixels.coord[i].y = (map->win_height / 2) - round(pixels.gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * pixels.gap) - coef_alt * map->z[line][i % map->width];
 		if (!((i + 1) % map->width))
 			line++;
 	}
