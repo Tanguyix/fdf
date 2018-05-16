@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 16:36:43 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/16 16:50:13 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,19 @@ int				ft_max_size(t_list *list)
 	while (list)
 	{
 		i = -1;
-		cpt = 1;
+		cpt = 0;
 		while (((char *)list->content)[++i])
 		{
-			if (ft_isspace(((char *)list->content)[i]))
+			if (ft_isdigit(((char *)list->content)[i]))
 				cpt++;
-			while (((char *)list->content)[i + 1] && ft_isspace(((char *)list->content)[i]))
+			while (((char *)list->content)[i + 1] && ft_isdigit(((char *)list->content)[i]))
 				i++;
 		}
 		if (cpt > max)
 			max = cpt;
 		list = list->next;
 	}
+	printf("%d\n", max);
 	return (max);
 }
 
@@ -68,11 +69,11 @@ t_map				*ft_stock_values(t_list *list)
 	map->height = i;
 	if (!(map->z = (int **)malloc(sizeof(int *) * ft_lst_size(list))))
 		return (NULL);
+	map->width = ft_max_size(list);
 	while (list)
 	{
 		j = -1;
 		k = -1;
-		map->width = ft_max_size(list);
 		if (!(map->z[--i] = (int *)malloc(sizeof(int) * map->width)))
 			return (NULL);
 		while (((char *)list->content)[++j] && k <= map->width)
