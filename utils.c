@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 17:44:55 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 18:09:53 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:42:49 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,9 @@ void    ft_get_name(t_map *map, char* av1)
     if (av1[i] == '/')
         i++;
     map->name = ft_strdup(&av1[i]);
+}
+
+void    ft_usage()
+{
+    ft_putstr("Usage : ./fdf <fichier.fdf>\n");
 }

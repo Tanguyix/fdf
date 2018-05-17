@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 17:51:38 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:44:00 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void					ft_mv_points(t_map *map);
 void					ft_reset(t_map *map);
 void					ft_stop(t_map *map);
 void					ft_get_name(t_map *map, char *av1);
+void					ft_usage(void);
 
 #endif
