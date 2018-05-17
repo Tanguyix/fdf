@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 10:49:05 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 12:32:54 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct			s_minilibx
 
 typedef struct			s_pixels
 {
-	int					gap;
+	float				gap;
 	struct s_coord		*coord;
 }						t_pixels;
 
@@ -52,8 +52,9 @@ typedef struct			s_map
 	int					**z;
 	int					win_height;
 	int					win_width;
-	t_minilibx			mlx;
-	t_pixels			pixels;
+	float				zoom;
+	t_minilibx			*mlx;
+	t_pixels			*pixels;
 }						t_map;
 
 typedef struct			s_coord
@@ -67,7 +68,7 @@ t_list					*ft_stock_lines(int fd);
 int						ft_max_size(t_list *list);
 t_map					*ft_stock_values(t_list *list);
 void					ft_build_image(t_map *map);
-t_pixels				ft_create_pixel_map(t_map *map);
+void						ft_create_pixel_map(t_map *map);
 void					ft_trace_lines(t_map *map);
 void					ft_bresenham_high(t_coord p1, t_coord p2, t_map *map);
 int						key_events(int key, void *param);
@@ -75,5 +76,7 @@ void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map);
 void					ft_bresenham(t_coord p1, t_coord p2, t_map *map);
 int						ft_exit(int key, void *param);
 void					ft_draw_point(t_coord point, t_map *map);
+void					ft_zoom(int key, t_map *map);
+int					ft_loop_events(t_map *map);
 
 #endif
