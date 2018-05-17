@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 15:46:16 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 17:26:39 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_prepare_mlx(t_map *map)
 	map->mv_y = 0;
 	map->act_x = 0;
 	map->act_y = 0;
-
+	map->coef_alt = 1;
 	ft_create_pixel_map(map);
 	mlx_key_hook(map->mlx->win, key_events, map);
 	mlx_loop_hook(map->mlx->mlx_ptr, ft_loop_events, map);
@@ -55,10 +55,11 @@ void	ft_create_pixel_map(t_map *map)
 	while (++i < map->nb_points)
 	{
 		map->pixels->coord[i].x = 5 * map->act_x + (map->win_width / 2) - round(map->pixels->gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * map->pixels->gap;
-		map->pixels->coord[i].y = 5 * map->act_y + (map->win_height / 2) - round(map->pixels->gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * map->pixels->gap) - (map->pixels->gap * map->z[line][i % map->width]) / 4;
+		map->pixels->coord[i].y = 5 * map->act_y + (map->win_height / 2) - round(map->pixels->gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * map->pixels->gap) - ((map->coef_alt * map->pixels->gap * map->z[line][i % map->width])) / 6;
 		if (!((i + 1) % map->width))
 			line++;
 	}
+	
 }
 
 void	ft_build_image(t_map *map)

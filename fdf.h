@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 15:43:44 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 17:34:20 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct			s_map
 	int					mv_y;
 	int					act_x;
 	int					act_y;
+	int					coef_alt;
 }						t_map;
 
 void					ft_prepare_mlx(t_map *map);
@@ -75,7 +76,7 @@ void					ft_build_image(t_map *map);
 void					ft_create_pixel_map(t_map *map);
 void					ft_trace_lines(t_map *map);
 void					ft_bresenham_high(t_coord p1, t_coord p2, t_map *map);
-int						key_events(int key, void *param);
+int						key_events(int key, t_map *map);
 void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map);
 void					ft_bresenham(t_coord p1, t_coord p2, t_map *map);
 int						ft_exit(int key, void *param);
@@ -83,5 +84,7 @@ void					ft_draw_point(t_coord point, t_map *map);
 void					ft_change_loop(int key, t_map *map);
 int						ft_loop_events(t_map *map);
 void					ft_mv_points(t_map *map);
+void					ft_reset(t_map *map);
+void					ft_stop(t_map *map);
 
 #endif
