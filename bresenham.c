@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 15:15:13 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 13:43:18 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 13:55:53 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void    ft_trace_lines(t_map *map)
             if ((((map->pixels->coord[i].x >= 0) && (map->pixels->coord[i].x <= map->win_width)) ||
             ((map->pixels->coord[i + 1].x >= 0) && (map->pixels->coord[i + 1].x <= map->win_width))) &&
             (((map->pixels->coord[i].y >= 0) && (map->pixels->coord[i].y <= map->win_height)) ||
-            ((map->pixels->coord[i + 1].y >= 0) && (map->pixels->coord[i + 1].x <= map->win_height))))
+            ((map->pixels->coord[i + 1].y >= 0) && (map->pixels->coord[i + 1].y <= map->win_height))))
                 ft_bresenham(map->pixels->coord[i], map->pixels->coord[i + 1], map);
         }
     }
@@ -120,7 +120,7 @@ void    ft_trace_lines(t_map *map)
           if ((((map->pixels->coord[i].x >= 0) && (map->pixels->coord[i].x <= map->win_width)) ||
             ((map->pixels->coord[i + map->width].x >= 0) && (map->pixels->coord[i + map->width].x <= map->win_width))) &&
             (((map->pixels->coord[i].y >= 0) && (map->pixels->coord[i].y <= map->win_height)) ||
-            ((map->pixels->coord[i + map->width].y >= 0) && (map->pixels->coord[i + map->width].x <= map->win_height))))
+            ((map->pixels->coord[i + map->width].y >= 0) && (map->pixels->coord[i + map->width].y <= map->win_height))))
         ft_bresenham(map->pixels->coord[i], map->pixels->coord[i + map->width], map);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 12:22:43 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 15:46:16 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void	ft_prepare_mlx(t_map *map)
 	map->pixels = malloc(sizeof(t_pixels));
 	map->pixels->gap = 0;
 	map->zoom = 0;
+	map->mv_x = 0;
+	map->mv_y = 0;
+	map->act_x = 0;
+	map->act_y = 0;
 
 	ft_create_pixel_map(map);
-	ft_build_image(map);
-	ft_trace_lines(map);
-	mlx_put_image_to_window(map->mlx->mlx_ptr, map->mlx->win, map->mlx->img.img_ptr, 0, 0);
 	mlx_key_hook(map->mlx->win, key_events, map);
 	mlx_loop_hook(map->mlx->mlx_ptr, ft_loop_events, map);
-	mlx_hook(map->mlx->win, 17, 0, &ft_exit, 0);
+	mlx_hook(map->mlx->win, 17, 0, ft_exit, 0);
 	mlx_loop(map->mlx->mlx_ptr);
 }
 
@@ -53,8 +54,8 @@ void	ft_create_pixel_map(t_map *map)
 	map->pixels->coord = malloc(sizeof(t_coord) * map->nb_points);
 	while (++i < map->nb_points)
 	{
-		map->pixels->coord[i].x = (map->win_width / 2) - round(map->pixels->gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * map->pixels->gap;
-		map->pixels->coord[i].y = (map->win_height / 2) - round(map->pixels->gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * map->pixels->gap) - (map->pixels->gap * map->z[line][i % map->width]) / 4;
+		map->pixels->coord[i].x = 5 * map->act_x + (map->win_width / 2) - round(map->pixels->gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * map->pixels->gap;
+		map->pixels->coord[i].y = 5 * map->act_y + (map->win_height / 2) - round(map->pixels->gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * map->pixels->gap) - (map->pixels->gap * map->z[line][i % map->width]) / 4;
 		if (!((i + 1) % map->width))
 			line++;
 	}
