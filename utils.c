@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/09 10:51:47 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 18:08:56 by tboissel         ###   ########.fr       */
+/*   Created: 2018/05/17 17:44:55 by tboissel          #+#    #+#             */
+/*   Updated: 2018/05/17 18:09:53 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int ac, char **av)
+void    ft_get_name(t_map *map, char* av1)
 {
-	int		fd;
-	t_list	*list;
-	t_map	*map;
-	char	*str_cp;
-
-	if (ac == 2)
-	{
-		str_cp = ft_strdup(av[1]);
-		fd = open(av[1], O_RDONLY);
-		list = ft_stock_lines(fd);
-		map = ft_stock_values(list);
-		ft_get_name(map, str_cp);
-		ft_prepare_mlx(map);
-	}
+    int     i;
+    
+    i = 0;
+    while (av1[i])
+        i++;
+    while (i && av1[i] != '/')
+        i--;
+    if (av1[i] == '/')
+        i++;
+    map->name = ft_strdup(&av1[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 17:26:39 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:09:15 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_prepare_mlx(t_map *map)
 	map->win_height = ((400 + map->height * 20) <= 1300) ? (400 + map->height * 20): 1300; 
 	map->win_width = ((400 + map->width * 20) <= 2600) ? (400 + map->width * 20) : 2600;
 	map->mlx->mlx_ptr = mlx_init();
-	map->mlx->win = mlx_new_window(map->mlx->mlx_ptr, map->win_width, map->win_height, "test");
+	map->mlx->win = mlx_new_window(map->mlx->mlx_ptr, map->win_width, map->win_height, map->name);
 	map->mlx->img.img_ptr = mlx_new_image(map->mlx->mlx_ptr, map->win_width, map->win_height);
 	map->mlx->img.data = (int *)mlx_get_data_addr(map->mlx->img.img_ptr, &map->mlx->img.bpp, &map->mlx->img.size_l, &map->mlx->img.endian);
 	map->pixels = malloc(sizeof(t_pixels));

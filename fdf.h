@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 17:34:20 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 17:51:38 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct			s_map
 	int					act_x;
 	int					act_y;
 	int					coef_alt;
+	char				*name;
 }						t_map;
 
 void					ft_prepare_mlx(t_map *map);
@@ -86,5 +87,6 @@ int						ft_loop_events(t_map *map);
 void					ft_mv_points(t_map *map);
 void					ft_reset(t_map *map);
 void					ft_stop(t_map *map);
+void					ft_get_name(t_map *map, char *av1);
 
 #endif
