@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 18:44:00 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:46:54 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct			s_map
 	int					act_y;
 	int					coef_alt;
 	char				*name;
+	int					color_bottom;
+	int					color_peak;
 }						t_map;
 
 void					ft_prepare_mlx(t_map *map);
