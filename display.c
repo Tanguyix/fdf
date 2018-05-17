@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 15:40:03 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 10:45:44 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 
 void	ft_prepare_mlx(t_map *map)
 {
-	t_minilibx	mlx;
-	t_pixels	pixels;
-	
 	map->win_height = ((400 + map->height * 20) <= 1300) ? (400 + map->height * 20): 1300; 
 	map->win_width = ((400 + map->width * 20) <= 2600) ? (400 + map->width * 20) : 2600;
-	mlx.mlx_ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx_ptr, map->win_width, map->win_height, "test");
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, map->win_width, map->win_height);
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
+	map->mlx.mlx_ptr = mlx_init();
+	map->mlx.win = mlx_new_window(map->mlx.mlx_ptr, map->win_width, map->win_height, "test");
+	map->mlx.img.img_ptr = mlx_new_image(map->mlx.mlx_ptr, map->win_width, map->win_height);
+	map->mlx.img.data = (int *)mlx_get_data_addr(map->mlx.img.img_ptr, &map->mlx.img.bpp, &map->mlx.img.size_l, &map->mlx.img.endian);
 	
-	pixels = ft_create_pixel_map(map);
-	ft_build_image(mlx, map, pixels);
-	ft_trace_lines(mlx, pixels, map);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
-	mlx_key_hook(mlx.win, key_events, 0);
-	mlx_hook(mlx.win, 17, 0, &ft_exit, 0);
-	mlx_loop(mlx.mlx_ptr);
+	map->pixels = ft_create_pixel_map(map);
+	ft_build_image(map);
+	ft_trace_lines(map);
+	mlx_put_image_to_window(map->mlx.mlx_ptr, map->mlx.win, map->mlx.img.img_ptr, 0, 0);
+	mlx_key_hook(map->mlx.win, key_events, 0);
+	mlx_hook(map->mlx.win, 17, 0, &ft_exit, 0);
+	mlx_loop(map->mlx.mlx_ptr);
 }
 
 t_pixels	ft_create_pixel_map(t_map *map)
@@ -58,14 +55,14 @@ t_pixels	ft_create_pixel_map(t_map *map)
 	return (pixels);
 }
 
-void	ft_build_image(t_minilibx mlx, t_map *map, t_pixels pixels)
+void	ft_build_image(t_map *map)
 {
 	int		i;
 
 	i = -1;
 	while (++i < map->nb_points)
 	{
-		if (pixels.coord[i].x >= 0 && pixels.coord[i].x < map->win_width && pixels.coord[i].y >= 0 && pixels.coord[i].y < map->win_height)
-			mlx.img.data[pixels.coord[i].x + pixels.coord[i].y * map->win_width] = 0xFFFFFF;
+		if (map->pixels.coord[i].x >= 0 && map->pixels.coord[i].x < map->win_width && map->pixels.coord[i].y >= 0 && map->pixels.coord[i].y < map->win_height)
+			map->mlx.img.data[map->pixels.coord[i].x + map->pixels.coord[i].y * map->win_width] = 0xFFFFFF;
 	}
 }

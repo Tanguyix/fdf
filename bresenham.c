@@ -6,19 +6,19 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 15:15:13 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 15:18:43 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/17 10:43:43 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    ft_draw_point(t_coord point, t_minilibx mlx, t_map *map)
+void    ft_draw_point(t_coord point, t_map *map)
 {
     if (point.x >= 0 && point.x < map->win_width && point.y >= 0 && point.y < map->win_height)
-			mlx.img.data[point.x + point.y * map->win_width] = 0xFFFFFF;
+			map->mlx.img.data[point.x + point.y * map->win_width] = 0xFFFFFF;
 }
 
-void    ft_bresenham_low(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
+void    ft_bresenham_low(t_coord p1, t_coord p2, t_map *map)
 {
     t_coord d;
     int     yi;
@@ -38,7 +38,7 @@ void    ft_bresenham_low(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
     point.x = p1.x;
     while (point.x != p2.x)
     {
-        ft_draw_point(point, mlx, map);
+        ft_draw_point(point, map);
         if (D > 0)
         {
             point.y = point.y + yi;
@@ -49,7 +49,7 @@ void    ft_bresenham_low(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
     }
 }
 
-void    ft_bresenham_high(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
+void    ft_bresenham_high(t_coord p1, t_coord p2, t_map *map)
 {
     t_coord d;
     int     xi;
@@ -69,7 +69,7 @@ void    ft_bresenham_high(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
     point.x = p1.x;
     while (point.y != p2.y)
     {
-        ft_draw_point(point, mlx, map);
+        ft_draw_point(point, map);
         if (D > 0)
         {
             point.x = point.x + xi;
@@ -80,25 +80,25 @@ void    ft_bresenham_high(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
     }
 }
 
-void    ft_bresenham(t_coord p1, t_coord p2, t_minilibx mlx, t_map *map)
+void    ft_bresenham(t_coord p1, t_coord p2, t_map *map)
 {
     if (abs(p2.y - p1.y) < abs(p2.x - p1.x))
     {
         if (p1.x > p2.x)
-            ft_bresenham_low(p2, p1, mlx, map);
+            ft_bresenham_low(p2, p1, map);
         else
-            ft_bresenham_low(p1, p2, mlx, map);
+            ft_bresenham_low(p1, p2, map);
     }
     else
     {
         if (p1.y > p2.y)
-            ft_bresenham_high(p2, p1, mlx, map);
+            ft_bresenham_high(p2, p1, map);
         else
-            ft_bresenham_high(p1, p2, mlx, map);
+            ft_bresenham_high(p1, p2, map);
     }
 }
 
-void    ft_trace_lines(t_minilibx mlx, t_pixels pixels, t_map *map)
+void    ft_trace_lines(t_map *map)
 {
     int     i;
     
@@ -106,9 +106,9 @@ void    ft_trace_lines(t_minilibx mlx, t_pixels pixels, t_map *map)
     while (++i < map->nb_points)
     {
         if (!i || ((i + 1) % map->width))
-            ft_bresenham(pixels.coord[i], pixels.coord[i + 1], mlx, map);
+            ft_bresenham(map->pixels.coord[i], map->pixels.coord[i + 1], map);
     }
     i = -1;
     while (++i < map->nb_points - map->width)
-        ft_bresenham(pixels.coord[i], pixels.coord[i + map->width], mlx, map);
+        ft_bresenham(map->pixels.coord[i], map->pixels.coord[i + map->width], map);
 }
