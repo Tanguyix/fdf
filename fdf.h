@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 10:46:06 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 16:19:20 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ t_map					*ft_stock_values(t_list *list);
 void					ft_build_image(t_map *map);
 void					ft_create_pixel_map(t_map *map);
 void					ft_trace_lines(t_map *map);
-void					ft_bresenham_high(t_coord p1, t_coord p2, t_map *map);
+void					ft_bresenham_high(t_coord p1, t_coord p2, t_map *map, int color);
 int						key_events(int key, t_map *map);
-void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map);
-void					ft_bresenham(t_coord p1, t_coord p2, t_map *map);
+void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map, int color);
+void					ft_bresenham(t_coord p1, t_coord p2, t_map *map, int color);
 int						ft_exit(int key, t_map *map);
-void					ft_draw_point(t_coord point, t_map *map);
+void					ft_draw_point(t_coord point, t_map *map, int color);
 void					ft_change_loop(int key, t_map *map);
 int						ft_loop_events(t_map *map);
 void					ft_mv_points(t_map *map);
@@ -92,5 +92,7 @@ void					ft_reset(t_map *map);
 void					ft_stop(t_map *map);
 void					ft_get_name(t_map *map, char *av1);
 void					ft_usage(void);
+void					ft_get_color(char flag, char *av, t_map *map);
+int						ft_get_rgb(char *av);
 
 #endif

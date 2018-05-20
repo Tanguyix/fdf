@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:50:21 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 11:40:12 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 12:13:01 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void    ft_change_loop(int key, t_map *map)
     if (key == 1)
     {
         map->mv_y += 1;
-        if (map->mv_x < 0)
+        if (map->mv_y < 0)
             map->mv_y = 0;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 11:07:14 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 15:39:41 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list			*ft_stock_lines(int fd)
 	char		**tmp;
 
 	list_lines = NULL;
-	while (get_next_line(fd, tmp))
+	while (get_next_line(fd, tmp) > 0)
 	{
 		ft_lstadd(&list_lines, ft_lstnew(*tmp, ft_strlen(*tmp) + 1));
 		free(*tmp);

@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 11:32:12 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 16:38:40 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ void	ft_create_pixel_map(t_map *map)
 void	ft_build_image(t_map *map)
 {
 	int		i;
-
 	i = -1;
 	while (++i < map->nb_points)
 	{
-		if (map->pixels->coord[i].x >= 0 && map->pixels->coord[i].x < map->win_width && map->pixels->coord[i].y >= 0 && map->pixels->coord[i].y < map->win_height)
-			map->mlx->img.data[map->pixels->coord[i].x + map->pixels->coord[i].y * map->win_width] = 0xFFFFFF;
+		if (map->pixels->coord[i].x >= 0 && map->pixels->coord[i].x < map->win_width && map->pixels->coord[i].y >= 0 && map->pixels->coord[i].y < map->win_height && map->z[i / map->width][i % map->width] <= 0)
+			map->mlx->img.data[map->pixels->coord[i].x + map->pixels->coord[i].y * map->win_width] = map->color_bottom;
+		if (map->pixels->coord[i].x >= 0 && map->pixels->coord[i].x < map->win_width && map->pixels->coord[i].y >= 0 && map->pixels->coord[i].y < map->win_height && map->z[i / map->width][i % map->width] > 0)
+			map->mlx->img.data[map->pixels->coord[i].x + map->pixels->coord[i].y * map->win_width] = map->color_peak;
 	}
 }
