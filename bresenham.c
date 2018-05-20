@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 15:15:13 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 13:55:53 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 11:52:24 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,11 @@ void    ft_trace_lines(t_map *map)
     i = -1;
     while (++i < map->nb_points)
     {
-        if (!i || ((i + 1) % map->width))
+        if(!((map->lines + 1) % 4))
+            return;
+            if (!i || ((i + 1) % map->width))
         {
-            if ((((map->pixels->coord[i].x >= 0) && (map->pixels->coord[i].x <= map->win_width)) ||
+            if ((!(map->lines) || ((map->lines + 2) % 4)) && (((map->pixels->coord[i].x >= 0) && (map->pixels->coord[i].x <= map->win_width)) ||
             ((map->pixels->coord[i + 1].x >= 0) && (map->pixels->coord[i + 1].x <= map->win_width))) &&
             (((map->pixels->coord[i].y >= 0) && (map->pixels->coord[i].y <= map->win_height)) ||
             ((map->pixels->coord[i + 1].y >= 0) && (map->pixels->coord[i + 1].y <= map->win_height))))
@@ -117,7 +119,7 @@ void    ft_trace_lines(t_map *map)
     i = -1;
     while (++i < map->nb_points - map->width)
     {
-          if ((((map->pixels->coord[i].x >= 0) && (map->pixels->coord[i].x <= map->win_width)) ||
+          if ((!(map->lines) || ((map->lines + 3) % 4)) && (((map->pixels->coord[i].x >= 0) && (map->pixels->coord[i].x <= map->win_width)) ||
             ((map->pixels->coord[i + map->width].x >= 0) && (map->pixels->coord[i + map->width].x <= map->win_width))) &&
             (((map->pixels->coord[i].y >= 0) && (map->pixels->coord[i].y <= map->win_height)) ||
             ((map->pixels->coord[i + map->width].y >= 0) && (map->pixels->coord[i + map->width].y <= map->win_height))))

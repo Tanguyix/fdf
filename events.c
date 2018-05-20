@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:50:21 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 18:57:15 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 11:40:12 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ int    key_events(int key, t_map *map)
 {
     if (key == 53)
         exit(0);
-    if (key == 125 || key == 126 || key == 0 || key == 2 || key == 13 || key == 1)
+    else if (key == 125 || key == 126 || key == 0 || key == 2 || key == 13 || key == 1)
         ft_change_loop(key, map);
-    if (key == 69)
+    else if (key == 69)
         map->coef_alt++;
-    if (key == 78)
+    else if (key == 78)
         map->coef_alt--;
-    if (key == 15)
+    else if (key == 15)
         ft_reset(map);
-   if (key == 49)
+    else if (key == 49)
         ft_stop(map);
+    else if (key == 37)
+        map->lines++;
     return (0);
 }
 
-int     ft_exit(int key, void *param)
+int     ft_exit(int key, t_map *map)
 {
     exit(0);
     return (0);
@@ -50,6 +52,7 @@ void    ft_reset(t_map  *map)
 		map->pixels->gap = (map->win_height) / (map->height * 1.8);
 	else
 		map->pixels->gap = (map->win_width) / (map->width * 1.8);
+    map->lines = 0;
     map->act_x = 0;
     map->act_y = 0;
     map->mv_x = 0;
@@ -68,6 +71,7 @@ int     ft_loop_events(t_map *map)
     ft_bzero(map->mlx->img.data, sizeof(int) * (map->win_height * map->win_width));
     map->act_y += map->mv_y;
     map->act_x += map->mv_x;
+    free(map->pixels->coord);
     ft_create_pixel_map(map);
 	ft_build_image(map);
 	ft_trace_lines(map);

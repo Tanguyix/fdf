@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/16 16:59:21 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 11:07:14 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 t_list			*ft_stock_lines(int fd)
 {
 	t_list		*list_lines;
-	char		*tmp;
+	char		**tmp;
 
 	list_lines = NULL;
-	while (get_next_line(fd, &tmp))
+	while (get_next_line(fd, tmp))
 	{
-		if (list_lines == NULL)
-			list_lines = ft_lstnew(tmp, ft_strlen(tmp) + 1);
-		else
-			ft_lstadd(&list_lines, ft_lstnew(tmp, ft_strlen(tmp) + 1));
-		free(tmp);
+		ft_lstadd(&list_lines, ft_lstnew(*tmp, ft_strlen(*tmp) + 1));
+		free(*tmp);
 	}
 	return (list_lines);
 }
@@ -61,7 +58,8 @@ t_map				*ft_stock_values(t_list *list)
 	int			k;
 	int			j;
 
-
+	if (!(map = malloc(sizeof(t_map))))
+			return (0);
 	i = ft_lst_size(list);
 	map->height = i;
 	if (!(map->z = (int **)malloc(sizeof(int *) * ft_lst_size(list))))

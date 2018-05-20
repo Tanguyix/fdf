@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/17 18:46:54 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 10:46:06 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct			s_map
 	int					width;
 	int					height;
 	int					nb_points;
-	int					**z;
 	int					win_height;
+	int					**z;
 	int					win_width;
 	float				zoom;
 	t_minilibx			*mlx;
@@ -69,6 +69,7 @@ typedef struct			s_map
 	char				*name;
 	int					color_bottom;
 	int					color_peak;
+	int					lines;
 }						t_map;
 
 void					ft_prepare_mlx(t_map *map);
@@ -82,7 +83,7 @@ void					ft_bresenham_high(t_coord p1, t_coord p2, t_map *map);
 int						key_events(int key, t_map *map);
 void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map);
 void					ft_bresenham(t_coord p1, t_coord p2, t_map *map);
-int						ft_exit(int key, void *param);
+int						ft_exit(int key, t_map *map);
 void					ft_draw_point(t_coord point, t_map *map);
 void					ft_change_loop(int key, t_map *map);
 int						ft_loop_events(t_map *map);
