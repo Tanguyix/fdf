@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 10:51:47 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 17:17:54 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 19:05:57 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		main(int ac, char **av)
 	t_map	*map;
 	char	*str_cp;
 	int		i;
+	t_list	*lst_copy;
 	
 	i = 1;
 	if (ac == 1)
@@ -40,6 +41,7 @@ int		main(int ac, char **av)
 			i++;
 		}
 		ft_get_name(map, str_cp);
+		ft_strdel(&str_cp);
 		ft_prepare_mlx(map);
 	}
 	return (0);

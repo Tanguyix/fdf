@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 16:19:20 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 18:18:47 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int						key_events(int key, t_map *map);
 void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map, int color);
 void					ft_bresenham(t_coord p1, t_coord p2, t_map *map, int color);
 int						ft_exit(int key, t_map *map);
-void					ft_draw_point(t_coord point, t_map *map, int color);
+void					ft_draw_point(t_coord point, t_map *map, int colorf);
 void					ft_change_loop(int key, t_map *map);
 int						ft_loop_events(t_map *map);
 void					ft_mv_points(t_map *map);
@@ -94,5 +94,7 @@ void					ft_get_name(t_map *map, char *av1);
 void					ft_usage(void);
 void					ft_get_color(char flag, char *av, t_map *map);
 int						ft_get_rgb(char *av);
+void    				ft_line_too_short(int i);
+void    				ft_free_map(t_map *map);
 
 #endif

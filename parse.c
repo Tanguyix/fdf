@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 15:39:41 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 18:59:32 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ t_map				*ft_stock_values(t_list *list)
 				while (((char*)list->content)[j + 1] && ((char*)list->content)[j + 1] != ' ')
 					j++;
 			}
+		if (k < map->width - 1)
+			ft_line_too_short(i);
+		while (k < map->width - 1)
+			map->z[i][++k] = 0;
 		list = list->next;
 	}
 	map->nb_points = map->height * map->width;

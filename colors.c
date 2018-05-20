@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:38:35 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 17:20:24 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/20 17:47:57 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int     ft_get_rgb(char *av)
     int     i;
     int     nb;
     int     rgb;
+    int     add;
 
     rgb = 0;
     i = 0;
@@ -41,7 +42,8 @@ int     ft_get_rgb(char *av)
     {
         while(av[i] == ' ' || av[i] == ',')
             i++;
-        rgb += nb * ft_atoi(&av[i]);
+        add = ((ft_atoi(&av[i]) < 255) ? ft_atoi(&av[i]) : 255);
+        rgb += nb * add;
         nb /= 256;
         while(av[i] && ft_isdigit(av[i]))
             i++;
