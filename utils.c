@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 17:44:55 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/21 12:10:33 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/21 12:29:02 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void    ft_line_too_short(int i)
 {
     ft_putstr("Warning : Line ");
     ft_putnbr(i + 1);
-    ft_putstr(" of your fdf file is too short.\nForgotten
- values have been replaced with zeroes\n");
+    ft_putstr(" of your fdf file is too short.\nForgotten values have been replaced with zeroes\n");
 }
 
 void    ft_free_map(t_map *map)
@@ -70,4 +69,20 @@ void    ft_error_window(void)
     mlx_key_hook(map->mlx->win, ft_exit, map);
     mlx_hook(map->mlx->win, 17, 0, ft_exit, map);
     mlx_loop(map->mlx->mlx_ptr);
+}
+
+void    ft_tutorial(t_map *map)
+{
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 10 , map->height / 15, 0xFFFFFF, "ESC");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 250 , map->height / 15, 0xFFFFFF, "quit");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 10 , map->height / 15 + 30, 0xFFFFFF, "WASD");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 250 , map->height / 15 + 30, 0xFFFFFF, "movements");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 10 , map->height / 15 + 60, 0xFFFFFF, "Up and Down arrows");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 250 , map->height / 15 + 60, 0xFFFFFF, "zoom in and out");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 10 , map->height / 15 + 90, 0xFFFFFF, "L");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 250 , map->height / 15 + 90, 0xFFFFFF, "toggle lines");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 10 , map->height / 15 + 120, 0xFFFFFF, "R");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 250 , map->height / 15 + 120, 0xFFFFFF, "reset all");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 10 , map->height / 15 + 150, 0xFFFFFF, "space");
+    mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 250 , map->height / 15 + 150, 0xFFFFFF, "stop movements");
 }

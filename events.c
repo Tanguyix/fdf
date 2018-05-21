@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:50:21 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/21 11:48:47 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:45:03 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ int    key_events(int key, t_map *map)
         ft_stop(map);
     else if (key == 37)
         map->lines++;
+    else
+        map->tuto = (!(map->tuto) ? 1 : 0);
     return (0);
 }
 
 int     ft_exit(int key, t_map *map)
 {
+	key = map->coef_alt;
     exit(0);
     return (0);
 }
@@ -87,8 +90,10 @@ int     ft_loop_events(t_map *map)
     free(map->pixels->coord);
     ft_create_pixel_map(map);
 	ft_build_image(map);
-	ft_trace_lines(map);
+    ft_trace_lines(map);
 	mlx_put_image_to_window(map->mlx->mlx_ptr, map->mlx->win, map->mlx->img.img_ptr, 0, 0);
+    if (map->tuto)
+        ft_tutorial(map);
     return (0);
 }
 

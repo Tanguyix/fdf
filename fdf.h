@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/21 11:55:58 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/21 16:40:48 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,13 @@ typedef struct			s_map
 	int					color_bottom;
 	int					color_peak;
 	int					lines;
+	int					tuto;
 }						t_map;
 
 void					ft_prepare_mlx(t_map *map);
 t_list					*ft_stock_lines(int fd);
 int						ft_max_size(t_list *list);
-t_map					*ft_stock_values(t_list *list);
+void					ft_stock_values(t_list *list, t_map *map);
 void					ft_build_image(t_map *map);
 void					ft_create_pixel_map(t_map *map);
 void					ft_trace_lines(t_map *map);
@@ -97,5 +98,6 @@ int						ft_get_rgb(char *av);
 void    				ft_line_too_short(int i);
 void    				ft_free_map(t_map *map);
 void					ft_error_window(void);
+void					ft_tutorial(t_map *map);
 
 #endif

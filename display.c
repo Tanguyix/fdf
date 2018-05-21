@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/21 11:56:26 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:43:55 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_prepare_mlx(t_map *map)
 	map->act_y = 0;
 	map->coef_alt = 1;
 	map->lines = 0;
+	map->tuto = 0;
 	ft_create_pixel_map(map);
 	mlx_key_hook(map->mlx->win, key_events, map);
 	mlx_loop_hook(map->mlx->mlx_ptr, ft_loop_events, map);
@@ -41,7 +42,6 @@ void	ft_create_pixel_map(t_map *map)
 {
 	int			i;
 	int			line;
-	float		coef_alt;
 
 	line = 0;
 	i = -1;
