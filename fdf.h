@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 18:18:47 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/21 11:55:58 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void					ft_get_color(char flag, char *av, t_map *map);
 int						ft_get_rgb(char *av);
 void    				ft_line_too_short(int i);
 void    				ft_free_map(t_map *map);
+void					ft_error_window(void);
 
 #endif

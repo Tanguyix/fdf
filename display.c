@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/20 18:21:49 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/21 11:56:26 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_prepare_mlx(t_map *map)
 {
 	map->mlx = malloc(sizeof(t_minilibx));
-	map->win_height = ((550 + map->height * 20) <= 1300) ? (550 + map->height * 20): 1300; 
-	map->win_width = ((550 + map->width * 20) <= 2600) ? (550 + map->width * 20) : 2600;
+	map->win_height = ((650 + map->height * 20) <= 1300) ? (650 + map->height * 20): 1300; 
+	map->win_width = ((650 + map->width * 20) <= 2600) ? (650 + map->width * 20) : 2600;
 	map->mlx->mlx_ptr = mlx_init();
 	map->mlx->win = mlx_new_window(map->mlx->mlx_ptr, map->win_width, map->win_height, map->name);
 	map->mlx->img.img_ptr = mlx_new_image(map->mlx->mlx_ptr, map->win_width, map->win_height);
@@ -55,12 +55,11 @@ void	ft_create_pixel_map(t_map *map)
 	map->pixels->coord = malloc(sizeof(t_coord) * map->nb_points);
 	while (++i < map->nb_points)
 	{
-		map->pixels->coord[i].x = 5 * map->act_x + (map->win_width / 2) - round(map->pixels->gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * map->pixels->gap;
-		map->pixels->coord[i].y = 5 * map->act_y + (map->win_height / 2) - round(map->pixels->gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * map->pixels->gap) - ((map->coef_alt * map->pixels->gap * map->z[line][i % map->width])) / 6;
+		map->pixels->coord[i].x = 2 * map->act_x + (map->win_width / 2) - round(map->pixels->gap * (map->width - map->height) / sqrt(3)) + ((i % map->width) - line) * map->pixels->gap;
+		map->pixels->coord[i].y = 2 * map->act_y + (map->win_height / 2) - round(map->pixels->gap * ((map->width + map->height) / 4)) + round(((0.5) * (line + (i % map->width))) * map->pixels->gap) - ((map->coef_alt * map->pixels->gap * map->z[line][i % map->width])) / 7;
 		if (!((i + 1) % map->width))
 			line++;
 	}
-	
 }
 
 void	ft_build_image(t_map *map)
