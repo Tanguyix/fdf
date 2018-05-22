@@ -5,7 +5,9 @@ SRC = 	main.c \
 		colors.c \
 		events.c \
 		utils.c \
-		parse.c
+		parse.c \
+		tutorial.c \
+		exit.c
 FLAGS = -Wall -Werror -Wextra
 OBJ = $(SRC:.c=.o)
 CC = gcc
