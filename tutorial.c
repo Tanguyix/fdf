@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 10:09:32 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 10:16:27 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:07:23 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,7 @@ void	ft_tutorial(t_map *m)
 	mlx_string_put(m->mlx->m_ptr, m->mlx->w, 10, m->h / 15 + 125, W, "space");
 	mlx_string_put(m->mlx->m_ptr, m->mlx->w, 250, m->h / 15 + 125, W,
 	"stop movements");
+	mlx_string_put(m->mlx->m_ptr, m->mlx->w, 10, m->h / 15 + 150, W, "+ and -");
+	mlx_string_put(m->mlx->m_ptr, m->mlx->w, 250, m->h / 15 + 150, W,
+	"change altitude");
 }

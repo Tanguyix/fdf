@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 13:11:14 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:04:09 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_create_pixel_map(t_map *m)
 (m->w - m->h) / sqrt(3)) + ((i % m->w) - line) * m->p->gap;
 		m->p->coord[i].y = 2 * m->act_y + (m->win_h / 2) - round(m->p->gap *
 ((m->w + m->h) / 4)) + round(((0.5) * (line + (i % m->w))) * m->p->gap) -
-((m->coef_alt * m->p->gap * m->z[line][i % m->w])) / 7;
+((m->coef_alt * m->p->gap * m->z[line][i % m->w])) / 8;
 		if (!((i + 1) % m->w))
 			line++;
 	}
