@@ -17,7 +17,7 @@ LIBDONE = libft/libft.a
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
 	$(MAKE) -C $(LIB)
 	$(CC) $(SRC) $(LIBDONE) $(FRAME) -o $(NAME)
 
