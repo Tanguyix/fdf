@@ -6,48 +6,48 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:38:35 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/21 13:57:59 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 10:26:40 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void     ft_get_color(char flag, char *av, t_map *map)
+void	ft_get_color(char flag, char *av, t_map *map)
 {
-    if (flag == 'b')
-        map->color_bottom = ft_get_rgb(av);
-    else if (flag == 'p')
-        map->color_peak = ft_get_rgb(av);
-    else
-    {
-        ft_usage();
-        exit(0);
-    }
+	if (flag == 'b')
+		map->color_bottom = ft_get_rgb(av);
+	else if (flag == 'p')
+		map->color_peak = ft_get_rgb(av);
+	else
+	{
+		ft_usage();
+		exit(0);
+	}
 }
 
-int     ft_get_rgb(char *av)
+int		ft_get_rgb(char *av)
 {
-    int     i;
-    int     nb;
-    int     rgb;
-    int     add;
+	int		i;
+	int		nb;
+	int		rgb;
+	int		add;
 
-    rgb = 0;
-    i = 0;
-    nb = 65536;
-    while(av[i])
-    {
-        while(av[i] == ' ' || av[i] == ',')
-            i++;
-        add = ((ft_atoi(&av[i]) < 255) ? ft_atoi(&av[i]) : 255);
-        rgb += nb * add;
-        nb /= 256;
-        while(av[i] && ft_isdigit(av[i]))
-            i++;
-        while(!(ft_isdigit(av[i])))
-            i++;
-        if (nb == 0)
-            break;
-    }   
-    return (rgb);
+	rgb = 0;
+	i = 0;
+	nb = 65536;
+	while (av[i])
+	{
+		while (av[i] == ' ' || av[i] == ',')
+			i++;
+		add = ((ft_atoi(&av[i]) < 255) ? ft_atoi(&av[i]) : 255);
+		rgb += nb * add;
+		nb /= 256;
+		while (av[i] && ft_isdigit(av[i]))
+			i++;
+		while (!(ft_isdigit(av[i])))
+			i++;
+		if (nb == 0)
+			break ;
+	}
+	return (rgb);
 }
