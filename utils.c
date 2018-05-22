@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 17:44:55 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 10:22:24 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 12:22:59 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@ void	ft_get_name(t_map *map, char *av)
 
 void	ft_usage(void)
 {
-	ft_putstr("Usage : ./fdf <-b \"R, G, B\"(color altitude 0) -p \"R ,G , B\"
-(color above 0)> <fichier.fdf>\n");
+	ft_putstr("Usage : ./fdf <-b R, G, B(color altitude 0) -p R ,G , B");
+	ft_putstr("(color above 0)> <fichier.fdf>\n");
+
 }
 
 void	ft_line_too_short(int i)
 {
 	ft_putstr("Warning : Line ");
 	ft_putnbr(i + 1);
-	ft_putstr(" of your fdf file is too short.\n
-Forgotten values have been replaced with zeroes\n");
+	ft_putstr(" of your fdf file is too short.\n");
+	ft_putstr("Forgotten values have been replaced with zeroes\n");
 }
 
 void	ft_free_map(t_map *map)
@@ -45,16 +46,16 @@ void	ft_free_map(t_map *map)
 	int		i;
 
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->h)
 		free(map->z[i]);
 	free(map->z);
 	i = -1;
 	free(map->mlx->img.data);
 	free(map->mlx->img.img_ptr);
-	free(map->mlx->mlx_ptr);
-	free(map->mlx->win);
+	free(map->mlx->m_ptr);
+	free(map->mlx->w);
 	free(map->mlx);
-	free(map->pixels);
+	free(map->p);
 	ft_strdel(&map->name);
 	free(map);
 }
@@ -65,12 +66,12 @@ void	ft_error_window(void)
 
 	map = malloc(sizeof(t_map));
 	map->mlx = malloc(sizeof(t_minilibx));
-	map->mlx->mlx_ptr = mlx_init();
-	map->mlx->win = mlx_new_window(map->mlx->mlx_ptr, 800, 600,
+	map->mlx->m_ptr = mlx_init();
+	map->mlx->w = mlx_new_window(map->mlx->m_ptr, 800, 600,
 	"ERROR, and a great FdF bonus");
-	mlx_string_put(map->mlx->mlx_ptr, map->mlx->win, 230, 280, 0xFFFFFF,
+	mlx_string_put(map->mlx->m_ptr, map->mlx->w, 230, 280, 0xFFFFFF,
 	"Error fdf file, press any key to exit");
-	mlx_key_hook(map->mlx->win, ft_exit, map);
-	mlx_hook(map->mlx->win, 17, 0, ft_exit, map);
-	mlx_loop(map->mlx->mlx_ptr);
+	mlx_key_hook(map->mlx->w, ft_exit, map);
+	mlx_hook(map->mlx->w, 17, 0, ft_exit, map);
+	mlx_loop(map->mlx->m_ptr);
 }

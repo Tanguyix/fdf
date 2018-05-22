@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 10:36:57 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 12:23:44 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int				ft_prepare_stock(t_list *list, t_map *map)
 	map->h = i;
 	if (!(map->z = malloc(sizeof(int *) * ft_lst_size(list))))
 		return (0);
-	map->width = ft_max_size(list);
-	map->nb_points = map->height * map->width;
+	map->w = ft_max_size(list);
+	map->nb_points = map->h * map->w;
 	return (i);
 }
 
@@ -84,9 +84,9 @@ void			ft_stock_values(t_list *list, t_map *map)
 	{
 		j = -1;
 		k = -1;
-		if (!(map->z[--i] = (int *)malloc(sizeof(int) * map->width)))
+		if (!(map->z[--i] = (int *)malloc(sizeof(int) * map->w)))
 			return ;
-		while (((char *)list->content)[++j] && k <= map->width)
+		while (((char *)list->content)[++j] && k <= map->w)
 			if (ft_isdigit(((char *)list->content)[j]))
 			{
 				map->z[i][++k] = ft_atoi(&((char *)list->content)[j]);
@@ -94,9 +94,9 @@ void			ft_stock_values(t_list *list, t_map *map)
 				((char*)list->content)[j + 1] != ' ')
 					j++;
 			}
-		if (k < map->width - 1)
+		if (k < map->w - 1)
 			ft_line_too_short(i);
-		while (k < map->width - 1)
+		while (k < map->w - 1)
 			map->z[i][++k] = 0;
 		list = list->next;
 	}

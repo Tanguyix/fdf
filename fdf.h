@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/21 18:07:19 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 12:15:03 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct			s_coord
 
 typedef struct			s_minilibx
 {
-	void				*mlx_ptr;
-	void				*win;
+	void				*m_ptr;
+	void				*w;
 	t_image				img;
 }						t_minilibx;
 
@@ -52,15 +52,15 @@ typedef struct			s_pixels
 
 typedef struct			s_map
 {
-	int					width;
-	int					height;
+	int					w;
+	int					h;
 	int					nb_points;
-	int					win_height;
+	int					win_h;
 	int					**z;
-	int					win_width;
+	int					win_w;
 	float				zoom;
 	t_minilibx			*mlx;
-	t_pixels			*pixels;
+	t_pixels			*p;
 	int					mv_x;
 	int					mv_y;
 	int					act_x;
@@ -80,6 +80,7 @@ void					ft_stock_values(t_list *list, t_map *map);
 void					ft_build_image(t_map *map);
 void					ft_create_pixel_map(t_map *map);
 void					ft_trace_lines(t_map *map);
+void					ft_trace_lines2(t_map *map);
 void					ft_bresenham_high(t_coord p1, t_coord p2, t_map *map, int color);
 int						key_events(int key, t_map *map);
 void					ft_bresenham_low(t_coord p1, t_coord p2, t_map *map, int color);
@@ -87,6 +88,7 @@ void					ft_bresenham(t_coord p1, t_coord p2, t_map *map, int color);
 int						ft_exit(int key, t_map *map);
 void					ft_draw_point(t_coord point, t_map *map, int colorf);
 void					ft_change_loop(int key, t_map *map);
+void					ft_change_loop_2(int key, t_map *map);
 int						ft_loop_events(t_map *map);
 void					ft_mv_points(t_map *map);
 void					ft_reset(t_map *map);
@@ -99,5 +101,7 @@ void    				ft_line_too_short(int i);
 void    				ft_free_map(t_map *map);
 void					ft_error_window(void);
 void					ft_tutorial(t_map *map);
+int						ft_prepare_stock(t_list *list, t_map *map);
+void					ft_display(t_map *map);
 
 #endif

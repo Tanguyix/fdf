@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:50:21 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 10:50:00 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 12:18:41 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	ft_reset(t_map *map)
 {
 	map->zoom = 0;
 	map->coef_alt = 1;
-	if (map->win_height > map->win_width)
-		map->pixels->gap = (map->win_height) / (map->height * 1.8);
+	if (map->win_h > map->win_w)
+		map->p->gap = (map->win_h) / (map->h * 1.8);
 	else
-		map->pixels->gap = (map->win_width) / (map->width * 1.8);
+		map->p->gap = (map->win_w) / (map->w * 1.8);
 	map->lines = 0;
 	map->act_x = 0;
 	map->act_y = 0;
@@ -57,10 +57,10 @@ int		ft_loop_events(t_map *map)
 	int	i;
 
 	i = -1;
-	if ((map->pixels->gap < 150 && map->zoom > 0) ||
-	(map->pixels->gap > 1 && map->zoom < 0))
-		map->pixels->gap += map->zoom;
-	if (map->pixels->gap == 0)
+	if ((map->p->gap < 150 && map->zoom > 0) ||
+	(map->p->gap > 1 && map->zoom < 0))
+		map->p->gap += map->zoom;
+	if (map->p->gap == 0)
 		return (0);
 	ft_bzero(map->mlx->img.data, sizeof(int) * (map->win_h * map->win_w));
 	map->act_y += map->mv_y;
@@ -75,7 +75,7 @@ int		ft_loop_events(t_map *map)
 		map->act_x = ((map->act_x > 0) ? (map->win_w / 3) : (-map->win_w / 3));
 		map->mv_x = -map->mv_x;
 	}
-	free(map->pixels->coord);
+	free(map->p->coord);
 	ft_display(map);
 	return (0);
 }

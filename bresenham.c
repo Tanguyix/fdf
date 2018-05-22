@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 15:15:13 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 11:36:52 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 12:17:19 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_trace_lines(t_map *m)
 				color = m->color_bottom;
 			else if (m->z[i / m->w][i % m->w] ||
 m->z[(i + 1) / m->w][(i + 1) % m->w])
-				color = map->color_peak;
+				color = m->color_peak;
 			if ((!(m->lines) || ((m->lines + 2) % 4)) &&
 (((m->p->coord[i].x >= 0) && (m->p->coord[i].x <= m->win_w)) ||
 ((m->p->coord[i + 1].x >= 0) && (m->p->coord[i + 1].x <= m->win_w))) &&
@@ -114,27 +114,28 @@ m->z[(i + 1) / m->w][(i + 1) % m->w])
 				ft_bresenham(m->p->coord[i], m->p->coord[i + 1], m, color);
 		}
 	}
-	ft_trace_lines_2(map);
+	ft_trace_lines2(m);
 }
 
-void	ft_trace_lines_2(t_map *m)
+void	ft_trace_lines2(t_map *m)
 {
 	int	i;
+	int color;
 
 	i = -1;
-	while (++i < m->nb_points - m->width)
+	while (++i < m->nb_points - m->w)
 	{
 		if (!(m->z[i / m->w][i % m->w]) &&
 !(m->z[(i + m->w) / m->w][(i + m->w) % m->w]))
 			color = m->color_bottom;
-		else if (m->z[i / m->width][i % m->w] ||
+		else if (m->z[i / m->w][i % m->w] ||
 m->z[(i + m->w) / m->w][(i + m->w) % m->w])
-			color = map->color_peak;
+			color = m->color_peak;
 		if ((!(m->lines) || ((m->lines + 3) % 4)) &&
 (((m->p->coord[i].x >= 0) && (m->p->coord[i].x <= m->win_w)) ||
 ((m->p->coord[i + m->w].x >= 0) && (m->p->coord[i + m->w].x <= m->win_w))) &&
 (((m->p->coord[i].y >= 0) && (m->p->coord[i].y <= m->win_h)) ||
-((m->p->coord[i + map->w].y >= 0) && (m->p->coord[i + m->w].y <= m->win_h))))
+((m->p->coord[i + m->w].y >= 0) && (m->p->coord[i + m->w].y <= m->win_h))))
 			ft_bresenham(m->p->coord[i], m->p->coord[i + m->w], m, color);
 	}
 }
