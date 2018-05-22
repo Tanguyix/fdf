@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 10:51:47 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 10:08:07 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 13:14:52 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		main(int ac, char **av)
 			return (0);
 		ft_stock_values(list, map);
 		ft_lstdel(&list, &del);
-		map->color_peak = 0xFFFFFF;
-		map->color_bottom = 0xFFFFFF;
+		map->color_peak = W;
+		map->color_bottom = W;
 		while (++i < ac - 1)
 			if (av[i][0] == '-')
 				ft_get_color(av[i][1], av[i + 1], map);

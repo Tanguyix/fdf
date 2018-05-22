@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 17:44:55 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 12:22:59 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/22 13:11:46 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_usage(void)
 {
 	ft_putstr("Usage : ./fdf <-b R, G, B(color altitude 0) -p R ,G , B");
 	ft_putstr("(color above 0)> <fichier.fdf>\n");
-
 }
 
 void	ft_line_too_short(int i)
