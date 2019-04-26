@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 17:44:55 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 13:11:46 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/06/19 15:57:01 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	ft_get_name(t_map *map, char *av)
 
 void	ft_usage(void)
 {
-	ft_putstr("Usage : ./fdf <-b R, G, B(color altitude 0) -p R ,G , B");
-	ft_putstr("(color above 0)> <fichier.fdf>\n");
+	ft_putstr("Usage : ./fdf -b R G B -zero altitude color- -p R G B");
+	ft_putstr(" -above 0 altitude color-");
+	ft_putstr("(color above 0)) <fichier.fdf>\n");
+	ft_putstr("Undefined behaviour if less than 3 values are defined\n");
 }
 
 void	ft_line_too_short(int i)
@@ -38,25 +40,6 @@ void	ft_line_too_short(int i)
 	ft_putnbr(i + 1);
 	ft_putstr(" of your fdf file is too short.\n");
 	ft_putstr("Forgotten values have been replaced with zeroes\n");
-}
-
-void	ft_free_map(t_map *map)
-{
-	int		i;
-
-	i = -1;
-	while (++i < map->h)
-		free(map->z[i]);
-	free(map->z);
-	i = -1;
-	free(map->mlx->img.data);
-	free(map->mlx->img.img_ptr);
-	free(map->mlx->m_ptr);
-	free(map->mlx->w);
-	free(map->mlx);
-	free(map->p);
-	ft_strdel(&map->name);
-	free(map);
 }
 
 void	ft_error_window(void)

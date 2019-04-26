@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:04:03 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 13:13:54 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/06/19 14:57:52 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
+
+# define W 0xFFFFFF
 
 typedef struct			s_image
 {
@@ -101,7 +103,6 @@ void					ft_usage(void);
 void					ft_get_color(char flag, char *av, t_map *map);
 int						ft_get_rgb(char *av);
 void					ft_line_too_short(int i);
-void					ft_free_map(t_map *map);
 void					ft_error_window(void);
 void					ft_tutorial(t_map *map);
 int						ft_prepare_stock(t_list *list, t_map *map);

@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:50:21 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 12:18:41 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/06/19 14:58:51 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int		key_events(int key, t_map *map)
 {
 	if (key == 53)
-	{
-		ft_free_map(map);
 		exit(0);
-	}
 	else if (key == 125 || key == 126 || key == 0 || key == 2 || key == 13 ||
 	key == 1)
 		ft_change_loop(key, map);

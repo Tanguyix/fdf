@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:03:49 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 12:23:44 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/25 11:08:01 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list			*ft_stock_lines(int fd)
 			ft_lstadd(&list_lines, ft_lstnew(tmp, ft_strlen(tmp) + 1));
 		free(tmp);
 	}
-	if (tmp)
+	if ((ret != -1) && tmp)
 		free(tmp);
 	if (ret == -1)
 		ft_error_window();

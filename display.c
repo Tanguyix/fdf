@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:17:15 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 14:04:09 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/25 11:44:52 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_prepare_mlx(t_map *m)
 {
-	m->mlx = malloc(sizeof(t_minilibx));
+	if (!(m->mlx = malloc(sizeof(t_minilibx))))
+		exit(0);
 	m->win_h = (((650 + m->h * 20) <= 1300) ? (650 + m->h * 20) : 1300);
 	m->win_w = (((650 + m->w * 20) <= 2600) ? (650 + m->w * 20) : 2600);
 	m->mlx->m_ptr = mlx_init();
@@ -22,7 +23,8 @@ void	ft_prepare_mlx(t_map *m)
 	m->mlx->img.img_ptr = mlx_new_image(m->mlx->m_ptr, m->win_w, m->win_h);
 	m->mlx->img.data = (int *)mlx_get_data_addr(m->mlx->img.img_ptr,
 &m->mlx->img.bpp, &m->mlx->img.size_l, &m->mlx->img.endian);
-	m->p = malloc(sizeof(t_pixels));
+	if (!(m->p = malloc(sizeof(t_pixels))))
+		exit(0);
 	m->p->gap = 0;
 	m->zoom = 0;
 	m->mv_x = 0;
@@ -90,7 +92,8 @@ void	ft_display(t_map *map)
 {
 	ft_create_pixel_map(map);
 	ft_build_image(map);
-	ft_trace_lines(map);
+	if (map->nb_points > 1)
+		ft_trace_lines(map);
 	mlx_put_image_to_window(map->mlx->m_ptr, map->mlx->w,
 map->mlx->img.img_ptr, 0, 0);
 	if (map->tuto)

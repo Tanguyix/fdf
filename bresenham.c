@@ -6,7 +6,7 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 15:15:13 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 12:17:19 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/25 11:25:01 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_trace_lines(t_map *m)
 			else if (m->z[i / m->w][i % m->w] ||
 m->z[(i + 1) / m->w][(i + 1) % m->w])
 				color = m->color_peak;
-			if ((!(m->lines) || ((m->lines + 2) % 4)) &&
+			if ((m->w > 1) && (!(m->lines) || ((m->lines + 2) % 4)) &&
 (((m->p->coord[i].x >= 0) && (m->p->coord[i].x <= m->win_w)) ||
 ((m->p->coord[i + 1].x >= 0) && (m->p->coord[i + 1].x <= m->win_w))) &&
 (((m->p->coord[i].y >= 0) && (m->p->coord[i].y <= m->win_h)) ||
@@ -131,7 +131,7 @@ void	ft_trace_lines2(t_map *m)
 		else if (m->z[i / m->w][i % m->w] ||
 m->z[(i + m->w) / m->w][(i + m->w) % m->w])
 			color = m->color_peak;
-		if ((!(m->lines) || ((m->lines + 3) % 4)) &&
+		if ((m->h > 1) && (!(m->lines) || ((m->lines + 3) % 4)) &&
 (((m->p->coord[i].x >= 0) && (m->p->coord[i].x <= m->win_w)) ||
 ((m->p->coord[i + m->w].x >= 0) && (m->p->coord[i + m->w].x <= m->win_w))) &&
 (((m->p->coord[i].y >= 0) && (m->p->coord[i].y <= m->win_h)) ||

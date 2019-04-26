@@ -6,17 +6,11 @@
 /*   By: tboissel <tboissel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 10:51:47 by tboissel          #+#    #+#             */
-/*   Updated: 2018/05/22 13:14:52 by tboissel         ###   ########.fr       */
+/*   Updated: 2018/05/25 11:42:12 by tboissel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	del(void *content, size_t a)
-{
-	free(content);
-	a = 0;
-}
 
 int		main(int ac, char **av)
 {
@@ -35,7 +29,7 @@ int		main(int ac, char **av)
 		if (!(map = malloc(sizeof(t_map))))
 			return (0);
 		ft_stock_values(list, map);
-		ft_lstdel(&list, &del);
+		ft_lstdel(&list, &ft_del);
 		map->color_peak = W;
 		map->color_bottom = W;
 		while (++i < ac - 1)

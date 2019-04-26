@@ -15,11 +15,13 @@ LIB = libft
 FRAME = -L/usr/local/lib -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 LIBDONE = libft/libft.a
 
-all: $(NAME)
+all: lib $(NAME)
+
+lib :
+	$(MAKE) -C $(LIB)
 
 $(NAME): $(OBJ)
-	$(MAKE) -C $(LIB)
-	$(CC) $(SRC) $(LIBDONE) $(FRAME) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) $(LIBDONE) $(FRAME) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
@@ -27,4 +29,5 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIB) fclean	
+
 re: fclean all
